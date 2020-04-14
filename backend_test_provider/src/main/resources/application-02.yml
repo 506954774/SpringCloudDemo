@@ -1,0 +1,26 @@
+server:
+ port: 9202
+eureka:
+ client:
+  service-url:
+   defaultZone: http://admin:admin@localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+ application:
+  name: helloServiceProvider
+ profils:
+  active:
+   02
+
+ datasource:
+      url: jdbc:mysql://39.107.40.76:3306/meettingfilm?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
+      username: admin
+      password: 123456
+      filters: log4j,wall,mergeStat
+logging:
+ config: classpath:logback.xml
+

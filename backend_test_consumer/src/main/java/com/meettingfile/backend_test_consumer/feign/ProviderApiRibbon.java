@@ -1,0 +1,29 @@
+package com.meettingfile.backend_test_consumer.feign;
+
+import com.meettingfilm.backend.utils.auth.AccessToken;
+import com.meettingfilm.backend_common.ResponseEntity;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+/**
+ * Created by ilinklink on 2020/4/13.
+ */
+
+@FeignClient(name = "helloServiceProvider1",
+        path = "/test",
+       // primary =true,//true则自己写实现类。默认是false，则框架自己构建
+      //  fallbackFactory = FallbackFactory.class
+       fallback = ProviderFallBackImpl.class
+//        configuration = FeignHelloConf.class, //这个可以指定注入模式，注解是使用mvc模式还是feign自己的模式
+//        url = "http://localhost:7101"
+)
+public interface ProviderApiRibbon {
+
+    //注意，不可使用 getMapping 或者 postMapping
+    @RequestMapping(value = "/auth.do",method = RequestMethod.POST)
+    ResponseEntity providerPost(
+            @RequestBody AccessToken params);
+}
