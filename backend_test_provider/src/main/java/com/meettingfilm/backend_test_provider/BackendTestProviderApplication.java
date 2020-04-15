@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableCircuitBreaker
 @EnableHystrix
-@EnableHystrixDashboard
+//@EnableHystrixDashboard
 @EnableDiscoveryClient
 @EnableSwagger2
 @SpringBootApplication

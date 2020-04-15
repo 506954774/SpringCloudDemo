@@ -22,22 +22,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Enumeration;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by ilinklink on 2020/3/18.
  */
+@Slf4j
 @RestController
 @RequestMapping("/test")
 public class TestController {
 
-    @ApiOperation(value = "测试eureka调用", notes = "测试eureka调用")
+    @ApiOperation(value = "测试eureka调用,使用testTemplate创建httpClient", notes = "测试eureka调用")
     @GetMapping("/getMessage")
-    public ResponseEntity testProvider(@ApiParam(name = "message", value = "信息", required = true)
+    public ResponseEntity testProvider(HttpServletRequest request,@ApiParam(name = "message", value = "信息", required = true)
                                           @RequestParam(value = "message") String message) {
+
+        logHeaders(request);
 
         ResponseEntity <String> result=new ResponseEntity(true);
         result.setResult(sayHello(message));
@@ -87,11 +94,13 @@ public class TestController {
 
     @ApiOperation(value = "测试eureka调用生产者的post方法", notes = "测试eureka调用生产者的post方法")
     @GetMapping("/testProviderPost")
-    public ResponseEntity testProviderPost( @ApiParam(name = "randomKey", value = "randomKey", required = true)
+    public ResponseEntity testProviderPost( HttpServletRequest request,@ApiParam(name = "randomKey", value = "randomKey", required = true)
                                                 @RequestParam("randomKey") String randomKey ,
                                             @ApiParam(name = "token", value = "token", required = true)
                                                 @RequestParam("token") String token)
     {
+
+        logHeaders(request);
 
         ResponseEntity <AccessToken> result=new ResponseEntity(true);
         result.setResult(callProviderPost(randomKey, token));
@@ -145,10 +154,11 @@ public class TestController {
 
 
 
-    @ApiOperation(value = "测试feign调用生产者的post方法,不走rRibbon", notes = "测试feign调用生产者的post方法,不走rRibbon")
+    @ApiOperation(value = "测试feign调用生产者的post方法,不走Ribbon,目标url写死", notes = "测试feign调用生产者的post方法,不走rRibbon,目标url写死")
     @PostMapping("/testFeignProviderPost")
-    public ResponseEntity testFeignProviderPost(  @RequestBody AccessToken params)
+    public ResponseEntity testFeignProviderPost(  HttpServletRequest request,@RequestBody AccessToken params)
     {
+        logHeaders(request);
 
         return providerApi.providerPost(params) ;
 
@@ -157,19 +167,29 @@ public class TestController {
 
     @ApiOperation(value = "测试feign调用生产者的post方法,集成Ribbon，负载均衡", notes = "测试feign调用生产者的post方法,集成Ribbon，负载均衡")
     @PostMapping("/testFeignRibbonProviderPost")
-    public ResponseEntity testFeignRibbonProviderPost(  @RequestBody AccessToken params)
+    public ResponseEntity testFeignRibbonProviderPost(  HttpServletRequest request,@RequestBody AccessToken params)
     {
+        logHeaders(request);
 
         return providerApiRibbon.providerPost(params) ;
 
     }
 
-    @ApiOperation(value = "测试继承生产者提供的feign接口 ", notes = "测试J继承生产者提供的feign接口")
+    @ApiOperation(value = "测试Feign:继承生产者提供的feign接口 ", notes = "测试继承生产者提供的feign接口")
     @PostMapping("/testSubFeignRibbonProviderPost")
-    public ResponseEntity testSubFeignRibbonProviderPost(  @RequestBody AccessToken params)
+    public ResponseEntity testSubFeignRibbonProviderPost( HttpServletRequest request, @RequestBody AccessToken params)
     {
 
+        logHeaders(request);
         return subFeignApi.providerPost(params) ;
+    }
+
+    private void logHeaders(HttpServletRequest request) {
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()){
+            String headName = headerNames.nextElement();
+            log.error("describeFilms - headName:{}, headValue:{}", headName, request.getHeader(headName));
+        }
     }
 
 }

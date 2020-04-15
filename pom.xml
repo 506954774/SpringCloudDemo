@@ -31,6 +31,9 @@
 		<module>
 			backend_api
 		</module>
+		<module>
+			backend_zuul
+		</module>
 	</modules>
 
 	<properties>

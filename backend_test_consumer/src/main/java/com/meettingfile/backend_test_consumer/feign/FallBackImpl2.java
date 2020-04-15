@@ -18,8 +18,8 @@ public class FallBackImpl2 implements SubFeignApi {
     public ResponseEntity providerPost(@RequestBody AccessToken p) {
 
         AccessToken params=new AccessToken();
-        params.setToken("FallBackImpl2：fallBack");
-        params.setRandomKey("FallBackImpl2：fallBack");
+        params.setToken("消费者提供的服务降级：fallBack");
+        params.setRandomKey("消费者提供的服务降级：fallBack");
         params.setPort(-1);
         ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
         responseEntity.setResult(params);
