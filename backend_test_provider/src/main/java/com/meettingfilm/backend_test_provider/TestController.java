@@ -1,6 +1,5 @@
 package com.meettingfilm.backend_test_provider;
 
-import com.meettingfilm.backend.utils.JwtProperties;
 import com.meettingfilm.backend.utils.JwtTokenUtil;
 import com.meettingfilm.backend.utils.auth.AccessToken;
 import com.meettingfilm.backend_common.ResponseEntity;
@@ -127,17 +126,24 @@ public class TestController extends ServerExceptionHandler {
             return responseEntity;
         }
 
-        Date expirationDateFromToken = util.getExpirationDateFromToken(params.getToken());
+        try {
+            Date expirationDateFromToken = util.getExpirationDateFromToken(params.getToken());
 
-        SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        params=new AccessToken();
-        params.setToken("token 过期时间："+format.format(expirationDateFromToken));
-        params.setRandomKey("null");
-        params.setPort(port);
+            SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            params.setUserId(util.getuserIdfromtoken(params.getToken()));
+            params.setToken("token 过期时间："+format.format(expirationDateFromToken));
+            params.setRandomKey("null");
+            params.setPort(port);
 
-        ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
-        responseEntity.setResult(params);
-        return responseEntity;
+            ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
+            responseEntity.setResult(params);
+            return responseEntity;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw e;
+        }
+
+
     }
 
 }

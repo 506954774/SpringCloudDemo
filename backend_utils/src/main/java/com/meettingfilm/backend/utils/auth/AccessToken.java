@@ -16,5 +16,7 @@ public class AccessToken implements Serializable {
 
     private String token;
 
+    private String userId;
+
     private int port;
 }

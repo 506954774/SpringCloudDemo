@@ -11,7 +11,7 @@ management:
         include: "*"
 spring:
  application:
-  name: helloServiceProvider
+  name: provider
  profils:
   active:
    02

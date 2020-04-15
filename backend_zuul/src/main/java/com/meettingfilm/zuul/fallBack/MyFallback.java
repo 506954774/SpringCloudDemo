@@ -21,7 +21,8 @@ import java.io.InputStream;
  * @program : com.mooc.meetingfilm.apigwzuul
  * @description : 业务降级处理
  **/
- @Component
+// @Component
+    //一般不会在网关里做服务降级
 public class MyFallback implements FallbackProvider {
 
     /**
@@ -84,6 +85,8 @@ public class MyFallback implements FallbackProvider {
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 return headers;
+
+                //testsubfeignribbonproviderpost
             }
         };
     }

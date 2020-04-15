@@ -9,14 +9,20 @@ eureka:
 zuul:
   prefix: "/backend/"  ## 统一前缀
   routes:
-    helloServiceConsumer:
+    consumer:
       path: /consumer/**
-      serviceId: helloServiceConsumer
+      serviceId: consumer
       retryable: true   ## 是否允许重试 ， 饿汉模式
-    helloServiceProvider:
+    provider:
       path: /provider/**
-      serviceId: helloServiceProvider
+      serviceId: provider
       retryable: true
+
+ ## 一定要配置ribbon超时时间，否则消费者的服务降级无法实现。例如：A调B，如果B宕机了，如果不配置下面的ribbon超时，则A提供的降级不会执行
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 60000
+
 hystrix:
   command:
     default:
@@ -27,13 +33,7 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 
-            spring:
-             application:
-              name: helloServiceProvider
-
 spring:
-  application:
-   name: gatewayZuul
   datasource:
     url: jdbc:mysql://39.107.40.76:3306/meettingfilm?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: admin

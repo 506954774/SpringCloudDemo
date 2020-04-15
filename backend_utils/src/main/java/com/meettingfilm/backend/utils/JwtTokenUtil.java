@@ -18,7 +18,7 @@ public class JwtTokenUtil {
     /**
      * 获取用户名从token中
      */
-    public String getUsernameFromToken(String token) {
+    public String getuserIdfromtoken(String token) {
         return getClaimFromToken(token).getSubject();
     }
 

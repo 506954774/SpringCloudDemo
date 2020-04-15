@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
     //不用给他加降级，生产者逻辑层应该有服务降级
 public interface ProviderSDK {
 
+    final String SERVICE_ID="provider";
+
     //注意，不可使用 getMapping 或者 postMapping
     @RequestMapping(value = "/test/auth.do",method = RequestMethod.POST)
     ResponseEntity providerPost(

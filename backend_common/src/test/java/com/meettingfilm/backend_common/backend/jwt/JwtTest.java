@@ -1,12 +1,9 @@
 package com.meettingfilm.backend_common.backend.jwt;
 
 import com.meettingfilm.backend.utils.JwtTokenUtil;
-import com.meettingfilm.backend_common.dao.entity.MoocBackendUserT;
-import com.meettingfilm.backend_common.dao.mapper.MoocBackendUserTMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -39,7 +36,7 @@ public class JwtTest {
         String token=util.generateToken(name, randomKey);
         log.info("token:" + token);
 
-        String username=util.getUsernameFromToken(token);
+        String username=util.getuserIdfromtoken(token);
         log.info("username:" + username);
 
         Date time=util.getExpirationDateFromToken(token);

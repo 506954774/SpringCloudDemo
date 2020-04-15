@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @ControllerAdvice
 public class ServerExceptionHandler  {
 
@@ -29,6 +32,8 @@ public class ServerExceptionHandler  {
             AdminException e= (AdminException) exception;
             return new ResponseEntity(e.getErrorCode(), false, e.getMessage());
         }
+
+        log.error("provide exception:"+exception.getMessage());
 
         return new ResponseEntity("500", false, "服务器错误，请联系管理员！");
     }

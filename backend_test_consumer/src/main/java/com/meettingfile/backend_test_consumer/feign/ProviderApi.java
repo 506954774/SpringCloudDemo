@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by ilinklink on 2020/4/13.
  */
-@FeignClient(name = "provider",
+@FeignClient(name = "provider1",
         path = "/test",
         url = "http://localhost:9201"
        // configuration = FeignConfig.class
