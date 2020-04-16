@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.meettingfile.backend_test_consumer.feign.ProviderApi;
 import com.meettingfile.backend_test_consumer.feign.ProviderApiRibbon;
 import com.meettingfile.backend_test_consumer.feign.SubFeignApi;
+import com.meettingfilm.backend.utils.JwtTokenUtil;
 import com.meettingfilm.backend.utils.auth.AccessToken;
 import com.meettingfilm.backend_common.ResponseEntity;
+import com.meettingfilm.backend_common.entity.LoginParams;
 import com.mettingfilm.api.provider.ProviderSDK;
 
+import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.annotation.Resource;
@@ -38,6 +43,48 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+
+    @ApiOperation(value = "测试登录，将返回token", notes = "不检验用户名，用户名和密码一致，则认为有效")
+    @PostMapping("/auth/login")
+    public ResponseEntity login(  HttpServletRequest request,@RequestBody LoginParams params)
+    {
+        logHeaders(request);
+
+        if(!TextUtils.isEmpty(params.getUserName())&&!TextUtils.isEmpty(params.getPassword())&&params.getPassword().equals(params.getUserName())){
+            JwtTokenUtil util=new JwtTokenUtil();
+
+            String name=params.getUserName();
+            String randomKey=util.getRandomKey();
+
+            log.info("name:"+name);
+            log.info("randomKey:" + randomKey);
+
+            String token=util.generateToken(name, randomKey);
+            log.info("token:" + token);
+
+            String username=util.getuserIdfromtoken(token);
+            log.info("username:" + username);
+
+            Date time=util.getExpirationDateFromToken(token);
+
+            SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            log.info("过期时间:" + format.format(time));
+            ResponseEntity <AccessToken> result=new ResponseEntity(true);
+            AccessToken aceessToken=new AccessToken();
+            aceessToken.setRandomKey(randomKey);
+            aceessToken.setToken(token);
+            aceessToken.setUserId(name);
+
+            result.setResult(aceessToken);
+            return result ;
+
+        }
+
+
+        return null;
+
+    }
+
 
     @ApiOperation(value = "测试eureka调用,使用testTemplate创建httpClient", notes = "测试eureka调用")
     @GetMapping("/getMessage")

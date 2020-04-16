@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+
+<suite name="自动测试报告">
+    <test name="测试模块">
+        <classes>
+            <class name="com.meettingfilm.testng.HelloWorld" />
+            <class name="com.meettingfilm.testng.zuultest.ZuulTest" />
+        </classes>
+    </test>
+
+<!--    <test name="films">
+        <classes>
+            <class name="com.mooc.meetingfilm.testng.films.FilmsTest" />
+        </classes>
+    </test>-->
+
+    <listeners>
+        <listener class-name="com.meettingfilm.testng.config.ExtentTestNGIReporterListener" />
+    </listeners>
+
+</suite>
+
