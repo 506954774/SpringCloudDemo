@@ -1,4 +1,5 @@
 host: localhost
+eurekaHost: localhost
 server:
  port: 9201
 eureka:
@@ -9,7 +10,7 @@ eureka:
   status-page-url: http://${host}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
  client:
   service-url:
-   defaultZone: http://admin:admin@localhost:8761/eureka/
+   defaultZone: http://admin:admin@${eurekaHost}:8761/eureka/
 
 management:
   endpoints:

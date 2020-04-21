@@ -1,6 +1,5 @@
 server:
  port: 8761
-##eureka.instance.status-page-url=http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
 eureka:
  server:
   enable-self-preservation: false
