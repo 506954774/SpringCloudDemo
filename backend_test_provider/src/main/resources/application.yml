@@ -3,6 +3,9 @@ server:
  port: 9201
 eureka:
  instance:
+  prefer-ip-address: true
+  instance-id: 订单服务:${host}:${server.port}
+  ip-address: ${host}
   status-page-url: http://${host}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
  client:
   service-url:

@@ -1,9 +1,12 @@
-host: localhost
+host: localhost     #localhost
 server:
  port: 8101
 eureka:
  instance:
-  status-page-url: http://${localhost}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+  prefer-ip-address: true
+  instance-id: 用户服务:${host}:${server.port} #将显示在status栏
+  ip-address: ${host}   # 服务的ip地址
+  status-page-url: http://${host}:${server.port}/swagger-ui.html # 配置swager
 
  client:
   service-url:
