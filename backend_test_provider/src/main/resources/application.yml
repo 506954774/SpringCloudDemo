@@ -1,5 +1,5 @@
-host: localhost
-eurekaHost: localhost
+host: 192.168.0.22     #localhost
+eurekaHost: 192.168.0.43
 server:
  port: 9201
 eureka:
