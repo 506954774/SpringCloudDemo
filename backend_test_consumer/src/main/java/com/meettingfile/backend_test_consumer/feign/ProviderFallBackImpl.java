@@ -17,8 +17,8 @@ public class ProviderFallBackImpl implements ProviderApiRibbon {
     public ResponseEntity providerPost(@RequestBody AccessToken p) {
 
         AccessToken params=new AccessToken();
-        params.setToken("ProviderFallBackImpl：fallBack");
-        params.setRandomKey("ProviderFallBackImpl：fallBack");
+        params.setToken("服务调用者提供的降级：fallBack");
+        params.setRandomKey("服务调用者提供的降级：fallBack");
         params.setPort(-1);
         ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
         responseEntity.setResult(params);
