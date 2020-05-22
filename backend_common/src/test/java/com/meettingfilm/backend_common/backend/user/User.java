@@ -1,21 +1,15 @@
 package com.meettingfilm.backend_common.backend.user;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.meettingfilm.backend_common.dao.entity.MoocBackendUserT;
-import com.meettingfilm.backend_common.dao.entity.MoocUserT;
 import com.meettingfilm.backend_common.dao.mapper.MoocBackendUserTMapper;
-import com.meettingfilm.backend_common.dao.mapper.MoocUserTMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import javax.annotation.Resource;
 
 /**
  * Created by ilinklink on 2020/3/14.
