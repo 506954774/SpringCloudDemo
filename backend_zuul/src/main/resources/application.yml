@@ -1,5 +1,5 @@
-host: 192.168.0.22     #localhost
-eurekaHost: 192.168.0.22
+host: 192.168.0.115     #localhost
+eurekaHost: 192.168.0.115
 server:
  port: 10000
 
@@ -16,11 +16,11 @@ eureka:
 zuul:
   prefix: "/backend/"  ## 统一前缀
   routes:
-    consumer:
+    consumer: ## 名字，任意取
       path: /consumer/**
       serviceId: consumer
       retryable: true   ## 是否允许重试 ， 饿汉模式
-    provider:
+    provider: ## 名字，任意取
       path: /provider/**
       serviceId: provider
       retryable: true
