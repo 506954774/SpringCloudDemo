@@ -2,6 +2,7 @@ package com.meettingfilm.backend.backend_gateway.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * @description :
  **/
 @Slf4j
-@RestController
+@RestController("/test")
 public class HelloController {
 
     /**
@@ -26,9 +27,9 @@ public class HelloController {
     * @return: com.mooc.meetingfilm.utils.common.vo.BaseResponseVO
     * @Author: jiangzh
     */
-    @RequestMapping(value = "/myFallback")
+    @GetMapping(value = "/myFallback")
     public ResponseEntity demoFallback(
-            ServerWebExchange serverWebExchange, Throwable throwable){
+                         ServerWebExchange serverWebExchange, Throwable throwable){
 
         Set<String> keys = serverWebExchange.getRequest().getQueryParams().keySet();
         for(String key : keys){
@@ -42,6 +43,11 @@ public class HelloController {
         }
 
         return new ResponseEntity( "演示请求失败，降级处理！", HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "/test")
+    public ResponseEntity test(){
+        return new ResponseEntity( "test！", HttpStatus.OK);
     }
 
 }
