@@ -1,5 +1,5 @@
-host: 192.168.0.115     #localhost
-eurekaHost: 192.168.0.115
+host: 192.168.0.143     #localhost
+eurekaHost: 192.168.0.143
 
 server:
   port: 28081
@@ -27,9 +27,18 @@ spring:
       - id: jiangzh-predicate
         uri: "http://www.jd.com"
         predicates:
-        - JiangzhAfter=2018-01-01
-        #filters:
-        #- Jiangzh=imooc,jiangzh
+        - After=2018-12-30T23:59:59.789+08:00[Asia/Shanghai]
+      - id: path-predicate
+        uri: "http://www.jd.com"
+        predicates:
+        - Path=/jd/**
+      - id: film-router #微服务
+        uri: lb://consumer
+        filters:
+        - RewritePath=/meetingfilm/consumer/(?<segment>.*), /$\{segment}
+        predicates:
+        - Path=/meetingfilm/consumer/**
+
 
 
 logging:
