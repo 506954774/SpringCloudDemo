@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
  * @description : 自定义全局Filter
  **/
 @Slf4j
-public class MyGlobalFilter implements GlobalFilter, Ordered {
+public class LogGlobalFilter implements GlobalFilter, Ordered {
 
   /**
   * @Description: 业务处理逻辑

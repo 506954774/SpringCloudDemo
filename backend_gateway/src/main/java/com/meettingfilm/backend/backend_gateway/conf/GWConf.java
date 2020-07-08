@@ -1,6 +1,8 @@
 package com.meettingfilm.backend.backend_gateway.conf;
 
-import com.meettingfilm.backend.backend_gateway.filters.MyGlobalFilter;
+import com.meettingfilm.backend.backend_gateway.filters.CorsGlobalFilter;
+import com.meettingfilm.backend.backend_gateway.filters.JwtGlobalFilter;
+import com.meettingfilm.backend.backend_gateway.filters.LogGlobalFilter;
 import com.meettingfilm.backend.backend_gateway.predicates.JiangzhAfterRoutePredicateFactory;
 
 import org.springframework.context.annotation.Bean;
@@ -20,8 +22,16 @@ public class GWConf {
     }
 
     @Bean
-    public MyGlobalFilter initMyGlobalFilter(){
-        return new MyGlobalFilter();
+    public LogGlobalFilter initMyGlobalFilter(){
+        return new LogGlobalFilter();
+    }
+    @Bean
+    public CorsGlobalFilter initCorsGlobalFilter(){
+        return new CorsGlobalFilter();
+    }
+    @Bean
+    public JwtGlobalFilter initJwtGlobalFilter(){
+        return new JwtGlobalFilter();
     }
 
 }

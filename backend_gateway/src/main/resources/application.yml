@@ -24,20 +24,29 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: jiangzh-predicate
-        uri: "http://www.jd.com"
-        predicates:
-        - After=2018-12-30T23:59:59.789+08:00[Asia/Shanghai]
+        #- id: jiangzh-predicate
+        #uri: "http://www.jd.com"
+        #predicates:
+        #- After=2018-12-30T23:59:59.789+08:00[Asia/Shanghai]
       - id: path-predicate
         uri: "http://www.jd.com"
         predicates:
         - Path=/jd/**
-      - id: film-router #微服务
+      - id: consumer-router #微服务
         uri: lb://consumer
         filters:
         - RewritePath=/meetingfilm/consumer/(?<segment>.*), /$\{segment}
         predicates:
         - Path=/meetingfilm/consumer/**
+      - id: provider-router #微服务
+        uri: lb://provider
+        filters:
+        - RewritePath=/meetingfilm/provider/(?<segment>.*), /$\{segment}
+        predicates:
+        - Path=/meetingfilm/provider/**
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 60000
 
 
 
