@@ -2,14 +2,15 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
 
+    <property name="SERVICE-MODULE-NAME" value="mettingfilm_eureka"/>
+
     <!-- 文件输出格式 -->
-    <property name="PATTERN"
-              value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
     <!--输出到控制台-->
     <!--<appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">-->
-    <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
-    <!--<pattern>${PATTERN}</pattern>-->
-    <!--</layout>-->
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+            <!--<pattern>${PATTERN}</pattern>-->
+        <!--</layout>-->
     <!--</appender>-->
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -34,7 +35,7 @@
         </encoder>
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/logs/backend/debug.%d.log</fileNamePattern>
+            <fileNamePattern>/mnt/logs/${SERVICE-MODULE-NAME}/debug.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -54,7 +55,7 @@
         </encoder>
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/logs/backend/info.%d.log</fileNamePattern>
+            <fileNamePattern>/mnt/logs/${SERVICE-MODULE-NAME}/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -74,7 +75,7 @@
         </encoder>
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/logs/backend/warn.%d.log</fileNamePattern>
+            <fileNamePattern>/mnt/logs/${SERVICE-MODULE-NAME}/warn.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -89,13 +90,13 @@
         </encoder>
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/logs/backend/error.%d.log</fileNamePattern>
+            <fileNamePattern>/mnt/logs/${SERVICE-MODULE-NAME}/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
     <root level="info,ERROR">
         <appender-ref ref="consoleLog"/>
-        <!--<appender-ref ref="debugLog"/> -->
+        <!--<appender-ref ref="debugLog"/>-->
         <appender-ref ref="infoLog"/>
         <appender-ref ref="warnLog"/>
         <appender-ref ref="errorLog"/>
