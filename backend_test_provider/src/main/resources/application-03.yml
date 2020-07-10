@@ -1,5 +1,5 @@
-host: 192.168.0.143       #localhost
-eurekaHost: 192.168.0.143
+host: ${APP_HOST:192.168.0.143}     #localhost
+eurekaHost: ${EUREKA_HOST:192.168.0.143}
 
 server:
  port: 9203
