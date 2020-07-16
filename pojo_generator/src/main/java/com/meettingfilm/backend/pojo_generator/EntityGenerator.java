@@ -31,10 +31,10 @@ public class EntityGenerator {
             // 生成类的作者
     private static String author = "chuck";
     // 数据源相关配置
-    private static String url = "jdbc:mysql://120.79.40.45:3306/sing?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://120.79.40.45:3306/sjxd?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String userName = "sing";
-    private static String userPwd = "BLkXC3zAs78piJtd";
+    private static String userName = "sjxd";
+    private static String userPwd = "cs4onZaPiXwHUKhk";
     // DAO的包路径
     private static String daoPackage = "com.ilinklink.dao";
     // 待生成的表名，注意是覆盖更新
@@ -42,7 +42,7 @@ public class EntityGenerator {
 
     static{
         tableNames = new String[]{
-                "pt_qa_info"
+                "pt_user_has_perm"
         };
     }
 
@@ -61,7 +61,7 @@ public class EntityGenerator {
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
         // 使用自定义模板，不想要生成就设置为null,如果不设置null会使用默认模板
-        templateConfig.setEntity("templates/lombok_swagger2_entity.java");
+        templateConfig.setEntity("templates/lombok_swagger2_entity_4mybatis.java");
         templateConfig.setService(null);
         templateConfig.setServiceImpl(null);
         templateConfig.setController(null);
