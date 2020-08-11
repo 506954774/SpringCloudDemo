@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meettingfilm.backend_common.dao.mapper.PtCommonParamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.meettingfilm.backend_common.dao.entity.PtCommonParam">
+        <id column="Param_ID" property="paramId" />
+        <result column="Param_Value" property="paramValue" />
+        <result column="Param_Type" property="paramType" />
+        <result column="Param_Desc" property="paramDesc" />
+        <result column="Param_Open" property="paramOpen" />
+        <result column="Open_UTime" property="openUtime" />
+        <result column="Param_Remove" property="paramRemove" />
+        <result column="Remove_Time" property="removeTime" />
+        <result column="CTime" property="CTime" />
+        <result column="UTime" property="UTime" />
+    </resultMap>
+</mapper>
