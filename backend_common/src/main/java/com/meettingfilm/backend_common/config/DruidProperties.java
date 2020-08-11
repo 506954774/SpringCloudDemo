@@ -13,10 +13,10 @@ import java.sql.SQLException;
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DruidProperties {
 
-    private static String url = "jdbc:mysql://39.107.40.76:3306/meettingfilm?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://120.78.221.149:20000/retire?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
-    private static String username = "admin";
-    private static String password = "123456";
+    private static String username = "retire";
+    private static String password = "04wGyfqGZxflDeZR";
 
     private Integer initialSize = 2;
 
