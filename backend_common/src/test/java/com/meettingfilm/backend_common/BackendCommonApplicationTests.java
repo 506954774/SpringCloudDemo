@@ -37,7 +37,6 @@ class BackendCommonApplicationTests {
 	//添加管理员权限:全部权限
 	void insertAdminPermissions() {
 		List<PtPermission> ptCommonParams = ptPermissionMapper.selectList(null);
-
 		if(ptCommonParams!=null&&ptCommonParams.size()>0){
 			for (int i = 0; i < ptCommonParams.size(); i++) {
 				PtAccountHasPermission entity=new PtAccountHasPermission();
@@ -45,9 +44,7 @@ class BackendCommonApplicationTests {
 				entity.setPermId(ptCommonParams.get(i).getPermId());
 				entity.setCTime(new Date());
 				ptAccountHasPermissionMapper.insert(entity);
-
 			}
-
 		}
 	}
 
