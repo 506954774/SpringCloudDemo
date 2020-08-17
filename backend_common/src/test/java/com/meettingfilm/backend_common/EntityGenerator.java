@@ -27,14 +27,22 @@ public class EntityGenerator {
 
     // 生成输出目录，定位到工程的java目录下
     //D:\chuck\ideaProjects\SpringCloud\backend_parent\backend_common\src\main\java\com
-    private static String outputDir = "D:\\chuck\\ideaProjects\\SpringCloud\\backend_parent\\backend_common\\src\\main\\java";
+    //private static String outputDir = "D:\\chuck\\ideaProjects\\SpringCloud\\backend_parent\\backend_common\\src\\main\\java";
+    //D:\server_projects\SpringCloudDemo\backend_parent\backend_common\src\main\java
+    private static String outputDir = "D:\\server_projects\\SpringCloudDemo\\backend_common\\src\\main\\java";
     // 生成类的作者
     private static String author = "chuck";
     // 数据源相关配置
-    private static String url = "jdbc:mysql://39.107.40.76:3306/meettingfilm?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+/*    private static String url = "jdbc:mysql://39.107.40.76:3306/meettingfilm?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
     private static String userName = "admin";
-    private static String userPwd = "123456";
+    private static String userPwd = "123456";*/
+
+    private static String url = "jdbc:mysql://120.78.221.149:20000/retire?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+    private static String driverName = "com.mysql.cj.jdbc.Driver";
+    private static String userName = "retire";
+    private static String userPwd = "04wGyfqGZxflDeZR";
+
     // DAO的包路径
     private static String daoPackage = "com.meettingfilm.backend_common.dao";
     // 待生成的表名，注意是覆盖更新
@@ -42,27 +50,8 @@ public class EntityGenerator {
 
     static{
         tableNames = new String[]{
-                "mooc_backend_user_t",
-                "mooc_user_t",
-                "mooc_banner_t",
-                "mooc_cat_dict_t",
-                "mooc_source_dict_t",
-                "mooc_year_dict_t",
-                "mooc_film_t",
-                "mooc_film_info_t",
-                "mooc_actor_t",
-                "mooc_film_actor_t",
-                "mooc_brand_dict_t",
-                "mooc_area_dict_t",
-                "mooc_hall_dict_t",
-                "mooc_cinema_t",
-                "mooc_field_t",
-                "mooc_hall_film_info_t",
-                "mooc_order_t",
-                "mooc_order_2017_t",
-                "mooc_order_2018_t"
-
-
+                "pt_account_has_permission",
+                "pt_permission"
 
 
 

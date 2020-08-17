@@ -31,10 +31,21 @@ public class EntityGenerator {
             // 生成类的作者
     private static String author = "chuck";
     // 数据源相关配置
-    private static String url = "jdbc:mysql://120.79.40.45:3306/sjxd?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+/*    ip:120.78.221.149
+    port:20000
+    username:test
+    password:Lzhlmcl@2017
+    database:qingshiyuan*/
+    private static String url = "jdbc:mysql://120.78.221.149:20000/retire?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String userName = "sjxd";
-    private static String userPwd = "cs4onZaPiXwHUKhk";
+    private static String userName = "retire";
+    private static String userPwd = "04wGyfqGZxflDeZR";
+/*
+    private static String url = "jdbc:mysql://120.78.221.149:20000/qingshiyuan?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
+    private static String driverName = "com.mysql.cj.jdbc.Driver";
+    private static String userName = "test";
+    private static String userPwd = "Lzhlmcl@2017";
+*/
     // DAO的包路径
     private static String daoPackage = "com.ilinklink.dao";
     // 待生成的表名，注意是覆盖更新
@@ -42,7 +53,7 @@ public class EntityGenerator {
 
     static{
         tableNames = new String[]{
-                "pt_user_has_perm"
+                "pt_soldier_info"
         };
     }
 
