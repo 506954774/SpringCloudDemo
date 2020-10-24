@@ -53,7 +53,7 @@ public class EntityGenerator {
 
     static{
         tableNames = new String[]{
-                "pt_soldier_info"
+                "pt_soldier_family_member"
         };
     }
 

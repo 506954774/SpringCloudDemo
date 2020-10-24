@@ -9,11 +9,13 @@ import com.meettingfilm.backend_common.dao.mapper.PtAccountHasPermissionMapper;
 import com.meettingfilm.backend_common.dao.mapper.PtCommonParamMapper;
 import com.meettingfilm.backend_common.dao.mapper.PtPermissionMapper;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+
 
 import javax.annotation.Resource;
 
@@ -23,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(classes= BackendCommonApplication .class)
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-class BackendCommonApplicationTests {
+public  class BackendCommonApplicationTests {
 
 	@Resource
 	private PtCommonParamMapper ptCommonParamMapper;
@@ -35,7 +37,7 @@ class BackendCommonApplicationTests {
 
 	@Test
 	//添加管理员权限:全部权限
-	void insertAdminPermissions() {
+	public void insertAdminPermissions() {
 		List<PtPermission> ptCommonParams = ptPermissionMapper.selectList(null);
 		if(ptCommonParams!=null&&ptCommonParams.size()>0){
 			for (int i = 0; i < ptCommonParams.size(); i++) {
@@ -49,7 +51,7 @@ class BackendCommonApplicationTests {
 	}
 
 	@Test
-	void insertCommonParsms() {
+	public void insertCommonParsms() {
 		int type=7;
 		String desc="职务(技术)等级";
 		String parmsString="正师职,副师职,正团职,副团职,正营职,副营职,正连职,副连职,正排职,副排职,正局级,副局级,正处级,副处级,正科级,副科级,一级科员,二级科员,办事员,技术6级,技术7级,技术8级,技术9级,技术10级,技术11级,技术12级,技术13级,技术14级";
@@ -132,6 +134,103 @@ class BackendCommonApplicationTests {
 		desc="文化程度";
 		parmsString="小学及以下,初中,高中,职高,中专,技校,专科,本科,硕士,博士,其他";
 
+		type=27;
+		desc="婚姻状况";
+		parmsString="已婚,未婚";
+
+		type=28;
+		desc="人员类别";
+		parmsString="退役士兵,复原军人,企业军转干部,机关事业军转干部,自主择业军转干部,军队离退休干部和退休士官,军队无军籍离退休退职职工,残疾军人";
+
+
+
+		type=30;
+		desc="安置方式";
+		parmsString="自主择业,自主就业,安排工作,退休,供养";
+
+
+		type=31;
+		desc="所读专业";
+		parmsString="建筑类,市政类,电气类,水利类,园林类,环保类,化工类";
+
+
+		type=32;
+		desc="军休类别";
+		parmsString="离休,退休,退修改离休";
+
+
+		type=33;
+		desc="干部类别";
+		parmsString="军官,技术军官,文职,技术文职,士官";
+
+		type=34;
+		desc="军休干部-安置方式";
+		parmsString="就地,易地";
+
+		type=35;
+		desc="军休干部-伤残属别";
+		parmsString="因战,因公,因病";
+
+		type=36;
+		desc="军休干部-退休前身份";
+		parmsString="职员,技术人员,技术工人,普通工人";
+
+		type=37;
+		desc="军休干部-职务（职称）-职员";
+		parmsString="职员,技术人员,技术工人,普通工人";
+
+		type=38;
+		desc="军休干部-职务（职称）-技术人员";
+		parmsString="正高四级,副高七级,中级,助理,原级";
+
+
+		type=39;
+		desc="军休干部-职务（职称）-技术工人";
+		parmsString="高级技师,技师,高级工,中级工,初级工";
+
+		type=40;
+		desc="军休干部-人员类型";
+		parmsString="军工,军休干部";
+
+		type=41;
+		desc="军休干部-职工分类";
+		parmsString="建国前老工人,退休,退职,离休";
+
+		type=42;
+		desc="政策权益-人员类别";
+		parmsString="在岗,退休,下岗,失业,离休,其他,已故";
+
+		/************************************************************************************************************
+		 * ***********************************************************************************************************
+		 * ***********************************************************************************************************
+		           20201016,修改字典
+		 * ***********************************************************************************************************
+		 ************************************************************************************************************/
+		type=22;
+		desc="现单位性质（含离退休前单位）";
+		parmsString="国家机关,事业单位,国有企业,集体企业,外资企业,私营企业,公益性岗位,自由职业,创业";
+
+		type=21;
+		desc="现就业状态";
+		parmsString="在职,下岗,失业,无业,离休,退休,创业,务农";
+
+		type=27;
+		desc="婚姻状况";
+		//parmsString="已婚,未婚,离异,丧偶";
+		parmsString="离异,丧偶";
+
+		type=43;
+		desc="住房状况";
+		parmsString="自建房,公有住房,经济适用房,廉租房,公租房,商品房,无房";
+
+		type=44;
+		desc="享受何种国家抚恤补助金";
+		parmsString="残疾军人,在乡复员军人,带病回乡,参战退役,参试退役,60周岁以上农村退役士兵,无";
+
+		type=45;
+		desc="社会救助状况";
+		parmsString="低保,五保,建档立卡贫困户,无";
+
 		String[] params=parmsString.split(",");
 		for (int i = 0; i < params.length; i++) {
 			PtCommonParam entity=new PtCommonParam();
@@ -147,7 +246,7 @@ class BackendCommonApplicationTests {
 
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }
