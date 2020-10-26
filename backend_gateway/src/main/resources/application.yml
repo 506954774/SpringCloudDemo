@@ -7,7 +7,7 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
-    instance-id: 网关服务:${host}:${server.port} #将显示在status栏
+    instance-id: Gateway网关服务:${host}:${server.port} #将显示在status栏
     ip-address: ${host}   # 服务的ip地址
     status-page-url: http://${host}:${server.port}/swagger-ui.html # 配置swager
   client:
@@ -35,15 +35,15 @@ spring:
       - id: consumer-router #微服务
         uri: lb://consumer
         filters:
-        - RewritePath=/meetingfilm/consumer/(?<segment>.*), /$\{segment}
+        - RewritePath=/backend/consumer/(?<segment>.*), /$\{segment}
         predicates:
-        - Path=/meetingfilm/consumer/**
+        - Path=/backend/consumer/**
       - id: provider-router #微服务
         uri: lb://provider
         filters:
-        - RewritePath=/meetingfilm/provider/(?<segment>.*), /$\{segment}
+        - RewritePath=/backend/provider/(?<segment>.*), /$\{segment}
         predicates:
-        - Path=/meetingfilm/provider/**
+        - Path=/backend/provider/**
 ribbon:
   ReadTimeout: 10000
   SocketTimeout: 60000
