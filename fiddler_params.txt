@@ -1,0 +1,15 @@
+#通过zuul网关,调用用户模块,登录获取tocken
+http://localhost:10000//backend/consumer/test/auth/login
+Content-Type: application/json
+{
+"userName":"userName",
+"password":"userName"
+}
+
+#通过zuul网关,调用文件上传的微服务
+http://localhost:10000//backend/consumer/test/uploadFile
+Content-Type: multipart/form-data; boundary=-------------------------acebdf13572468
+Host: localhost:10000
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJmbmFzZ2oiLCJzdWIiOiJ1c2VyTmFtZSIsImV4cCI6MTYwNDI4OTQ0MCwiaWF0IjoxNjAzNjg0NjQwfQ.Rch1OVJLr8XvyTM5qlMhszoG6kqjuhRheglhEojZjhq9j28y-1TZpSfwoClwRDdWZ_Bm8bW-gwGafr4wYChWhQ
+Content-Length: 27820
+Fiddler-Encoding: base64

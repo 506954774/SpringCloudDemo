@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/test")
-public class TestController {
+public class TestController{
 
     @ApiOperation(value = "测试登录，将返回token", notes = "不检验用户名，用户名和密码一致，则认为有效")
     @PostMapping("/auth/login")
@@ -238,5 +238,7 @@ public class TestController {
             log.error("describeFilms - headName:{}, headValue:{}", headName, request.getHeader(headName));
         }
     }
+
+
 
 }

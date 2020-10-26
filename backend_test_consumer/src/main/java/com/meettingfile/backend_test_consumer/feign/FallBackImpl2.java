@@ -7,6 +7,8 @@ import com.mettingfilm.api.provider.ProviderSDK;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by ilinklink on 2020/4/13.
  */
@@ -25,5 +27,27 @@ public class FallBackImpl2 implements SubFeignApi {
         responseEntity.setResult(params);
         return responseEntity;
 
+    }
+
+    @Override
+    public ResponseEntity uploadFile(HttpServletRequest request) {
+        AccessToken params=new AccessToken();
+        params.setToken("消费者提供的服务降级：fallBack");
+        params.setRandomKey("消费者提供的服务降级：fallBack");
+        params.setPort(-1);
+        ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
+        responseEntity.setResult(params);
+        return responseEntity;
+    }
+
+    @Override
+    public ResponseEntity multiImport(HttpServletRequest request) {
+        AccessToken params=new AccessToken();
+        params.setToken("消费者提供的服务降级：fallBack");
+        params.setRandomKey("消费者提供的服务降级：fallBack");
+        params.setPort(-1);
+        ResponseEntity<AccessToken> responseEntity = new ResponseEntity<>(true);
+        responseEntity.setResult(params);
+        return responseEntity;
     }
 }

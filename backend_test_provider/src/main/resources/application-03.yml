@@ -1,5 +1,5 @@
-host: ${APP_HOST:192.168.0.143}     #localhost
-eurekaHost: ${EUREKA_HOST:192.168.0.143}
+host: ${APP_HOST:192.168.0.142}     #localhost
+eurekaHost: ${EUREKA_HOST:192.168.0.142}
 
 server:
  port: 9203
@@ -31,4 +31,11 @@ spring:
       filters: log4j,wall,mergeStat
 logging:
  config: classpath:logback.xml
+
+dfs:
+ client:
+   conf: C:/root/client.conf
+   host: 39.107.40.76:8089
+ max:
+   size: 10
 

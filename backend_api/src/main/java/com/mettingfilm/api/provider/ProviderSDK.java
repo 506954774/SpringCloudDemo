@@ -3,10 +3,16 @@ package com.mettingfilm.api.provider;
 import com.meettingfilm.backend.utils.auth.AccessToken;
 import com.meettingfilm.backend_common.ResponseEntity;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ilinklink on 2020/4/13.
@@ -22,4 +28,12 @@ public interface ProviderSDK {
     @RequestMapping(value = "/test/auth.do",method = RequestMethod.POST)
     ResponseEntity providerPost(
             @RequestBody AccessToken params);
+
+    //Feign不支持文件上传
+/*    @RequestMapping(value ="/test/upload",method = RequestMethod.POST)
+    ResponseEntity uploadFile(HttpServletRequest request) ;
+
+
+    @RequestMapping(value ="/test/multi_upload",method = RequestMethod.POST)
+    ResponseEntity multiImport(HttpServletRequest request) ;*/
 }
