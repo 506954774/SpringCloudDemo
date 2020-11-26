@@ -244,6 +244,213 @@ public  class BackendCommonApplicationTests {
 		}
 	}
 
+	@Test
+	public void insertDic46(){
+		int type=46;
+		String desc="复员军人/残疾军人";
+		String parmsString="复员军人,残疾军人";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+
+	@Test
+	public void insertDic47(){
+		int type=47;
+		String desc="入伍时间节点(1954年10月31日前入伍)";
+		String parmsString="1954年10月31日前入伍,1954年11月1日后入伍";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic48(){
+		int type=48;
+		String desc="待遇情况";
+		String parmsString="在乡老复员军人定期补助,离休退休,无";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic49(){
+		int type=49;
+		String desc="身体残疾情况";
+		String parmsString="残疾军人,社会残疾人";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic50(){
+		int type=50;
+		String desc="优抚-伤残性质";
+		String parmsString="因战,因公,因病";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+
+	@Test
+	public void insertDic51(){
+		int type=51;
+		String desc="优抚-伤残10个等级";
+		String parmsString="一级,二级,三级,四级,五级,六级,七级,八级,九级,十级";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic52(){
+		int type=52;
+		String desc="优抚-伤残6个等级";
+		String parmsString="一级,二级,三级,四级,五级,六级";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic53(){
+		int type=53;
+		String desc="伤残证件名称";
+		String parmsString="中华人民共和国残疾军人证,中华人民共和国伤残民兵民工证,中华人民共和国因战因公伤残人员证";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+
+	@Test
+	public void insertDic54(){
+		int type=54;
+		String desc="立功受奖情况";
+		String parmsString="八一勋章,大军区以上荣誉称号,一等功,二等功,三等功,全军士官优秀人才奖,无";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic55(){
+		int type=55;
+		String desc="供养情况";
+		String parmsString="分散供养,集中供养,无";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic56(){
+		int type=56;
+		String desc="供养单位";
+		String parmsString="荣康医院,复退军人精神病院,复退军人慢性病疗养院,综合性优抚医院,光荣院,社会福利机构,无";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
+	@Test
+	public void insertDic57(){
+		int type=57;
+		String desc="安置类型";
+		String parmsString="原籍安置,异地安置,回入伍地安置,其他";
+		String[] params=parmsString.split(",");
+		for (int i = 0; i < params.length; i++) {
+			PtCommonParam entity=new PtCommonParam();
+			entity.setParamValue(params[i]);
+			entity.setParamType(type);
+			entity.setParamDesc(desc);
+			entity.setParamOpen(1);
+			entity.setParamRemove(0);
+			entity.setCTime(new Date());
+			ptCommonParamMapper.insert(entity);
+		}
+	}
 
 	@Test
 	public void contextLoads() {
