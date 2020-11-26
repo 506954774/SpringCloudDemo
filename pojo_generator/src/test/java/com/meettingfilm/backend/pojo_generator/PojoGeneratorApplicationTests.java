@@ -1,6 +1,5 @@
 package com.meettingfilm.backend.pojo_generator;
 
-import com.ilinklink.dao.mapper.PtCommonParamMapper;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,15 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 class PojoGeneratorApplicationTests {
 
-    @Resource
-    private PtCommonParamMapper ptCommonParamMapper;
-
-    @Test
-    void contextLoads() {
-        log.error("error");
-        log.warn("ptCommonParamMapper{}",ptCommonParamMapper);
-
-    }
 
 
 }

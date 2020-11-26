@@ -15,7 +15,7 @@ import java.util.Map;
 /*
     数据层内容生成
  */
-public class EntityGeneratorYingZhuang {
+public class EntityGeneratorYingZhuangWithoutSwagger {
 
     // 生成输出目录，定位到工程的java目录下
     //D:\chuck\ideaProjects\SpringCloud\backend_parent\backend_common\src\main\java\com
@@ -89,7 +89,7 @@ public class EntityGeneratorYingZhuang {
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(outputDir);
         gc.setFileOverride(true);
-        gc.setSwagger2(true);
+        gc.setSwagger2(false);
         gc.setActiveRecord(true);
         gc.setEnableCache(false);
         gc.setBaseResultMap(true);
