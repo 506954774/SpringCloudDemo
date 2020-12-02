@@ -126,7 +126,7 @@ public class TestController{
         String uri = "/test/getMessage?message="+message;
 
         // http://localhost:7101/provider/sayhello?message=hello
-        String url = "http://helloServiceProvider"+uri;
+        String url = "http://provider"+uri;
 
         // invoker provider test
         String result = restTemplate.getForObject(url, String.class);

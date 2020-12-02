@@ -29,7 +29,7 @@ public class FallBackImpl2 implements SubFeignApi {
 
     }
 
-    @Override
+    //@Override
     public ResponseEntity uploadFile(HttpServletRequest request) {
         AccessToken params=new AccessToken();
         params.setToken("消费者提供的服务降级：fallBack");
@@ -40,7 +40,7 @@ public class FallBackImpl2 implements SubFeignApi {
         return responseEntity;
     }
 
-    @Override
+    //@Override
     public ResponseEntity multiImport(HttpServletRequest request) {
         AccessToken params=new AccessToken();
         params.setToken("消费者提供的服务降级：fallBack");
