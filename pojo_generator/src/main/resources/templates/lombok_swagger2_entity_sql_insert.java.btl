@@ -53,20 +53,20 @@ mybatis里的insert语句模板:
           )
         VALUES (
          <% for(field in table.fields){ %>
-            ${field.propertyType}!"默认值"},
+              ${field.propertyType}!"默认值"},
               <%
                         var jdbcType =',jdbcType=VARCHAR';
                         if(field.propertyType=='String'){
-                            jdbcType =',jdbcType=VARCHAR';
+                             jdbcType =',jdbcType=VARCHAR';
                         }
                         if(field.propertyType=='Date'){
-                           jdbcType =',jdbcType=TIMESTAMP';
+                            jdbcType =',jdbcType=TIMESTAMP';
                         }
                         if(field.propertyType=='LocalDate'){
-                           jdbcType =',jdbcType=TIMESTAMP';
+                            jdbcType =',jdbcType=TIMESTAMP';
                         }
                         else{
-                            jdbcType ='';
+                             jdbcType ='';
                         }
                %>
 
