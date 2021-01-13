@@ -1,6 +1,7 @@
 package com.meettingfile.backend_test_consumer;
 
 import com.alibaba.fastjson.JSON;
+import com.meettingfile.backend_test_consumer.feign.FeignFileUploadWithNacos2;
 import com.meettingfile.backend_test_consumer.feign.ProviderApi;
 import com.meettingfile.backend_test_consumer.feign.ProviderApiRibbon;
 import com.meettingfile.backend_test_consumer.feign.SubFeignApi;
@@ -24,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 
@@ -240,5 +243,18 @@ public class TestController{
     }
 
 
+
+
+    @ApiOperation(value = "nacos+feign  单文件上传", response = String.class, notes = "nacos+feign ，单文件上传")
+    @PostMapping("/feign2/upload2")
+    public ResponseEntity uploadFileAction2(@RequestParam("file") MultipartFile file) {
+        ResponseEntity responseEntity = subFeignApi.uploadFileAction2(file);
+        return responseEntity;
+    }
+    @ApiOperation(value = "nacos+feign 多文件上传2",  response = ArrayList.class, notes = "nacos+feign 文件批量上传,返回list<String>")
+    @PostMapping("/feign2/multi_upload2")
+    public ResponseEntity multiImportAction2(@RequestParam("file")  MultipartFile[] files) {
+        return subFeignApi.multiImportAction2(files);
+    }
 
 }

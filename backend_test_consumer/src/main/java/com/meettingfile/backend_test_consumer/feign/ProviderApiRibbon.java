@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by ilinklink on 2020/4/13.
  */
 
-@FeignClient(name = "provide",
+@FeignClient(name = "provide2",
         path = "/test",
        // primary =true,//true则自己写实现类。默认是false，则框架自己构建
       //  fallbackFactory = FallbackFactory.class

@@ -1,79 +1,76 @@
-package com.meettingfilm.backend.pojo_generator;
+package com.chuck;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.ITypeConvert;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /*
     数据层内容生成
  */
-public class EntityGeneratorInsert {
+public class GeneratorStarter {
 
-    // 生成输出目录，定位到工程的java目录下
-    //D:\chuck\ideaProjects\SpringCloud\backend_parent\backend_common\src\main\java\com
-    private static String outputDir = "D:\\server_projects\\SpringCloudDemo\\pojo_generator\\src\\main\\java";
-    //D:\server_projects\SpringCloudDemo\pojo_generator
-    //D:\server_projects\SpringCloudDemo\pojo_generator\src\main\java
-            // 生成类的作者
-    private static String author = "chuck";
-    // 数据源相关配置
-/*    ip:120.78.221.149
-    port:20000
-    username:test
-    password:Lzhlmcl@2017
-    database:qingshiyuan*/
- /*   private static String url = "jdbc:mysql://192.168.0.108:3306/yingzhuang?serverTimezone=CTT&characterEncoding=utf8&useUnicode=true&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true";
+    // 数据源相关配置（根据自己的数据库来配置）
+    private static String url = "jdbc:mysql://39.107.40.76:3306/retire?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String userName = "root";
+    private static String userName = "admin";
     private static String userPwd = "123456";
-    */
 
-    /*
-    private static String url = "jdbc:mysql://120.78.221.149:20000/qingshiyuan?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
-    private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String userName = "test";
-    private static String userPwd = "Lzhlmcl@2017";
-        */
-
-
-    private static String url = "jdbc:mysql://120.78.221.149:20000/retire?autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC";
-    private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String userName = "retire";
-    private static String userPwd = "04wGyfqGZxflDeZR";
-
-    /*spring.datasource.url=jdbc:mysql://120.78.221.149:20000/retire?autoReconnect=true&amp;characterEncoding=UTF-8
-    spring.datasource.username=retire
-    spring.datasource.password=04wGyfqGZxflDeZR
-    spring.datasource.driverClassName=com.mysql.jdbc.Driver*/
-
-    // DAO的包路径
-    private static String daoPackage = "com.ilinklink.dao";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
-
+    //表名，一次可以设置多个。表字段全部小写，下划线隔开！
     static{
         tableNames = new String[]{
-               /* "yz_project",
-                "yz_project_attachment",
-                "yz_project_log",
-                "yz_project_plan",
-                "yz_clue",
-                "yz_clue_attachment",
-                "yz_tenant_user",
-*/
                 "pt_system_param",
-
         };
     }
 
+
+    public static void init(Config builder){
+        url=builder.getUrl();
+        driverName=builder.getDriverName();
+        userName=builder.getUserName();
+        userPwd=builder.getUserPwd();
+        tableNames=builder.getTableNames();
+        daoPackage=builder.getDaoPackage();
+        entityGenerator();
+    }
+
+
+    // 生成输出目录，定位到工程的java目录下(不需要手动设置，main方法里会根据当前类的绝对路径去动态设置)
+    private static String outputDir;
+    //private static String outputDir = "D:\\server_projects\\MybatisSqlGenerator\\src\\main\\java";
+    //D:\chuck\ideaProjects\SpringCloud\backend_parent\backend_common\src\main\java\com
+    //D:\server_projects\MybatisSqlGenerator\src\main\java\com\chuck\core\generator
+    //D:\server_projects\SpringCloudDemo\pojo_generator
+    //D:\server_projects\SpringCloudDemo\pojo_generator\src\main\java
+
+    // 生成类的作者
+    private static String author = "chuck";
+
+    // DAO的包路径
+    private static String daoPackage = "dao";
+
+
+
+    public static void main (String [] args){
+        System.out.println("程序启动！");
+        entityGenerator();
+    }
     public static void main1 (String [] args){
         entityGenerator();
     }
@@ -81,6 +78,22 @@ public class EntityGeneratorInsert {
 
 
     public static void entityGenerator() {
+
+        try {
+            File directory = new File("");
+
+            //String canonicalPath = directory.getCanonicalPath();//eclipse中运行为：E:\EclipseWorkspace\FileTestProject，jar包运行为：H:\FileTestProject
+            //System.out.println("当前类的简洁路径："+canonicalPath);
+
+            String absolutePath = directory.getAbsolutePath();//eclipse中运行为：E:\EclipseWorkspace\FileTestProject，jar包运行为：H:\FileTestProject
+            System.out.println("当前类的绝对路径："+absolutePath);
+
+            //outputDir = "D:\\server_projects\\MybatisSqlGenerator\\src\\main\\java";
+            outputDir = absolutePath+"\\src\\main\\java";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         AutoGenerator mpg = new AutoGenerator();
         mpg.setTemplateEngine(new BeetlTemplateEngine());
@@ -169,6 +182,9 @@ public class EntityGeneratorInsert {
         @Override
         public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
             String t = fieldType.toLowerCase();
+            if (t.contains("bigint")) {
+                return DbColumnType.LONG;
+            }
             if (t.contains("tinyint")) {
                 return DbColumnType.INTEGER;
             }

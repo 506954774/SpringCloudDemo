@@ -29,6 +29,12 @@ public class ResponseEntity<T> implements Serializable {
      */
     private T result;
 
+
+
+    public ResponseEntity( ) {
+        this(false);
+    }
+
     public ResponseEntity(boolean success) {
         this(null, success, null);
     }

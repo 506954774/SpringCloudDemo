@@ -9,10 +9,12 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -190,6 +192,54 @@ public class TestController extends ServerExceptionHandler {
         }
     }
 
+
+    @ApiOperation(value = "单文件上传2", response = String.class, notes = "单文件上传,返回可访问的路径")
+    @RequestMapping(value = "/upload2",method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity uploadFileAction2(@RequestParam(value = "file")  MultipartFile file) {
+        try {
+            String result= uploadFile(file);
+            ResponseEntity<String> responseEntity = new ResponseEntity<>(true);
+            responseEntity.setResult(result);
+            return responseEntity;
+        } catch (AdminException e) {
+            return new ResponseEntity<>(e.getErrorCode(), false, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "多文件上传2",  response = ArrayList.class, notes = "文件批量上传,返回list<String>")
+    @RequestMapping(value = "/multi_upload2",method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity multiImportAction2(@RequestParam(value = "file")  MultipartFile[] files) {
+        try {
+            List<String> result= multiImport(files);
+            ResponseEntity<List<String>> responseEntity = new ResponseEntity<>(true);
+            responseEntity.setResult(result);
+            return responseEntity;
+        } catch (AdminException e) {
+            return new ResponseEntity<>(e.getErrorCode(), false, e.getMessage());
+        }
+    }
+
+    public List<String> multiImport(MultipartFile[] files) throws AdminException {
+
+        if(files==null||files.length==0){
+            log.warn(LOGGER_PREFIX+"上传内容为空!", "");
+            throw new AdminException(  "上传内容为空!");
+        }
+        else {
+            List<String> result = new ArrayList<>();
+            ResponseEntity<List<String>> responseEntity = new ResponseEntity<>(true);
+            for (MultipartFile singleFile:files) {
+                try {
+                    String url = uploadFile(singleFile);
+                    result.add(url);
+                } catch (AdminException e) {
+                    throw e;
+                }
+            }
+            return result;
+        }
+    }
+
     public String uploadFile2(HttpServletRequest request) throws AdminException {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile mFile = multipartRequest.getFile("file");
@@ -258,7 +308,7 @@ public class TestController extends ServerExceptionHandler {
 
             String fileUrl = fastDFSClient.uploadFile(file_buff, fileType);
             log.info( "[文件上传]文件上传成功！文件链接url[" + fileUrl + "].");
-            return dfsHost + "/" + fileUrl;
+            return "http://"+dfsHost + "/" + fileUrl;
         } catch (Exception e) {
             log.error( "[文件上传]文件上传失败！", e);
             throw new AdminException("","[文件上传]文件上传失败！");

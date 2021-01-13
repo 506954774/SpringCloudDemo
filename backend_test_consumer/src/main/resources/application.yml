@@ -1,5 +1,5 @@
-host: ${APP_HOST:192.168.0.107}     #localhost
-eurekaHost: ${EUREKA_HOST:192.168.0.107}
+host: ${APP_HOST:127.0.0.1}     #localhost
+eurekaHost: ${EUREKA_HOST:127.0.0.1}
 server:
  port: 8101
 eureka:
@@ -37,3 +37,14 @@ feign:
 logging:
  config: classpath:logback.xml
 
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 6000
+
+hystrix:
+ command:
+  default:
+   execution:
+    isolation:
+     thread:
+      timeoutInMilliseconds: 60000

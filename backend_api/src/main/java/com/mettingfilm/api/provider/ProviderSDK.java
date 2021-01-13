@@ -5,10 +5,13 @@ import com.meettingfilm.backend_common.ResponseEntity;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -36,4 +39,28 @@ public interface ProviderSDK {
 
     @RequestMapping(value ="/test/multi_upload",method = RequestMethod.POST)
     ResponseEntity multiImport(HttpServletRequest request) ;*/
+
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/test/upload2",
+            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    ResponseEntity uploadFileAction2(@RequestPart(value = "file") MultipartFile file)  ;
+
+
+    /**
+     * 多文件上传
+     * @param files
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/test/multi_upload2",method = RequestMethod.POST ,
+            // produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},//不加这个也可以
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    ResponseEntity multiImportAction2(@RequestPart(value = "file") MultipartFile[] files);//必须是@RequestPart注解，否则报错
+
 }
